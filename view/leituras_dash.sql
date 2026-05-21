@@ -44,6 +44,7 @@ WHERE l.id_leitura = (
     WHERE s2.fk_po = po.id_ponto_operacional
 );
 
+CREATE VIEW vw_conformidade_do_sistema AS
 SELECT 
     id_empresa,
     ROUND(
@@ -56,15 +57,17 @@ SELECT
 FROM vw_status_ponto_operacional
 GROUP BY id_empresa;
 
-select 
+CREATE VIEW vw_nao_conformidade AS
+SELECT
 	id_empresa,
     nome_ambiente,
     ROUND(
 		( SUM(
-				case
-					when status_operacional <> 'NORMAL'
-                    then 1
-                    else 0
-				end ) * 100.0 ) / count(*), 0 ) as porcentagem
-from vw_status_ponto_operacional
-group by id_ambiente;
+				CASE
+					WHEN status_operacional <> 'NORMAL'
+                    THEN 1
+                    ELSE 0
+				END ) * 100.0 ) / count(*), 0 ) AS porcentagem
+FROM vw_status_ponto_operacional
+GROUP BY id_ambiente
+LIMIT 5;
