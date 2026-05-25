@@ -1,55 +1,55 @@
 USE frigolog;
 
 INSERT INTO tipo_usuario (tipo) VALUES
-('Administrador'),
-('Gestor'),
-('Operador');
+	('admin_frigolog'),
+    ('suporte_n3_frigolog'),
+    ('suporte_n2_frigolog'),
+    ('suporte_n1_frigolog'),
+    ('admin_empresa'),
+    ('operador');
 
 INSERT INTO empresa (razao_social, cnpj, codigo_cadastro) VALUES
-('Frigolog Desenv LTDA', '12345678000101', 'ABCD1234');
+	('Frigolog Desenvolvimento', '11111111000111', 'FRGADM01'),
+    ('Empresa X', '22222222000122', 'FRGJHL76');
 
 INSERT INTO usuario (nome, senha, email, fk_tipo_usuario, fk_empresa) VALUES
-('Bruno', 'bruno@frigolog123', 'bruno@frigolog.com', 1, 1);
+	('Bruno Rafael', SHA2('bruno@123', 224), 'bruno.rafael@frigolog.com', 1, 1),
+    ('Thays Ramos', SHA2('thays123', 224), 'thays.ramos@frigolog.com', 1, 1),
+    ('Matheus Delfiol', SHA2('matheus123', 224), 'matheus.delfiol@frigolog.com', 1, 1),
+    ('Matheus Martins', SHA2('matheus123', 224), 'metheus.martins@frigolog.com', 1, 1),
+    ('Felipe Gonçalves', SHA2('felipe123', 224), 'felipe.goncalves@frigolog.com', 1, 1),
+    ('Luiz Phelipe', SHA2('luiz123', 224), 'luiz.phelipe@frigolog.com', 1, 1);
 
 INSERT INTO endereco (cep, numero) VALUES
-('09750000', '120'),
-('09090000', '450'),
-('11035000', '800'),
-('13050000', '155');
+	('01001000', '100'),
+	('02002000', '250'),
+	('0303000', '500');
 
 INSERT INTO tipo_ambiente (tipo) VALUES
-('Supermercado'),
-('Transportadora'),
-('Centro de Distribuição');
+	('Supermercado'),
+	('Centro de Distribuição'),
+	('Transportadora');
 
 INSERT INTO ambiente_externo (nome, fk_empresa, fk_tipo_ambiente, fk_endereco) VALUES
-('Assaí Atacadista São Bernardo', 1, 1, 1),
-('JSL Transportes Santo André', 1, 2, 2),
-('Mercado Livre Hub Santos', 1, 3, 3),
-('Atacadão Campinas', 1, 1, 4);
+	('CD SPTech', 2, 2, 1),
+	('Mercado XPTO', 2, 1, 2),
+	('Transportadora Bob', 2, 3, 3);
 
 INSERT INTO configuracao_ponto_operacional (temp_min, temp_max) VALUES
-(0, 4),
-(-18, -10),
-(0, 8),
-(2, 6);
+	(0, 4);
 
 INSERT INTO tipo_ponto_operacional (tipo) VALUES
-('Geladeira'),
-('Câmara Fria'),
-('Caminhão Refrigerado'),
-('Freezer');
+	('Geladeira'),
+	('Freezer'),
+	('Câmara Fria'),
+	('Caminhão Refrigerado');
 
 INSERT INTO ponto_operacional (nome, fk_tipo_po, fk_ambiente, fk_configuracao_po) VALUES
-('Geladeira Açougue', 1, 1, 1),
-('Freezer Açougue', 4, 1, 2),
-('Baú Caminhão 7821', 3, 2, 3),
-('Câmara Principal', 2, 3, 2),
-('Geladeira Estoque', 1, 4, 4);
+	('Geladeira Principal', 1, 1, 1),
+	('Freezer Estoque', 4, 1, 1),
+	('Caminhão EIB6086', 3, 2, 1);
 
 INSERT INTO sensor (identificador, fk_po) VALUES
-('TEMP-A01', 1),
-('TEMP-A02', 2),
-('TEMP-T01', 3),
-('TEMP-C01', 4),
-('TEMP-G01', 5);
+	('TEMP-0001', 1),
+	('TEMP-0002', 2),
+	('TEMP-0003', 3);
