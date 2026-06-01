@@ -98,5 +98,7 @@ CREATE TABLE contato (
     id_contato INT PRIMARY KEY AUTO_INCREMENT,
     nome_empresa VARCHAR(100),
     email VARCHAR(100),
-    telefone CHAR(11)
+    telefone CHAR(11),
+    data_mensagem  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+

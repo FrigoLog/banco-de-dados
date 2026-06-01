@@ -53,3 +53,9 @@ INSERT INTO sensor (identificador, fk_po) VALUES
 	('TEMP-0001', 1),
 	('TEMP-0002', 2),
 	('TEMP-0003', 3);
+    
+    INSERT INTO contato (nome_empresa, email, telefone, data_mensagem) VALUES
+    ('Seara', 'seara@carne.com', '11999999999', '2026-05-30 20:10:00'),
+    ('Friboi', 'friboi@carne.com', '11666666666', '2026-05-31 13:20:00'),
+    ('Swift', 'swift@carne.com', '11555555555', '2026-05-21 09:10:00');
+    
