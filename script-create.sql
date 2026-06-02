@@ -83,17 +83,6 @@ CREATE TABLE leitura (
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fk_sensor) REFERENCES sensor (id_sensor)
 );
 
-CREATE TABLE alerta (
-    id_alerta INT PRIMARY KEY AUTO_INCREMENT,
-    tipo VARCHAR(20),
-    descricao VARCHAR(80),
-	fk_po INT,
-    fk_leitura INT UNIQUE,
-    CONSTRAINT ctFkPO FOREIGN KEY (fk_po) REFERENCES ponto_operacional(id_ponto_operacional),
-    CONSTRAINT ctFkAlertaLeitura FOREIGN KEY (fk_leitura) REFERENCES leitura(id_leitura),
-    CONSTRAINT ctChkTipoAlerta CHECK (tipo IN('ALERTA', 'CRITICO')) 
-);
-
 CREATE TABLE contato (
     id_contato INT PRIMARY KEY AUTO_INCREMENT,
     nome_empresa VARCHAR(100),
@@ -101,4 +90,3 @@ CREATE TABLE contato (
     telefone CHAR(11),
     data_mensagem  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
