@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `frigolog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `frigolog`;
--- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: frigolog
+-- Host: 127.0.0.1    Database: frigolog
 -- ------------------------------------------------------
--- Server version	8.0.46
+-- Server version	8.0.46-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -338,7 +338,7 @@ CREATE TABLE `usuario` (
   KEY `ctFkTipoUsuario` (`fk_tipo_usuario`),
   CONSTRAINT `ctFkTipoUsuario` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`id_tipo_usuario`),
   CONSTRAINT `ctFkUsuarioEmpresa` FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +347,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Bruno Rafael','9a5ae3c5b12ae30d7524bac12536f57139bccb8f78c9da62cf5f4e28','bruno.rafael@frigolog.com',1,1),(2,'Thays Ramos','16165a7b8ba39f67276ae219f6166a97f1d221a2031ab10b88641c29','thays.ramos@frigolog.com',1,1),(3,'Matheus Delfiol','a1539a907fdf882ca96e0ea25194f50ed907594f2bea9f9d6d6e911f','matheus.delfiol@frigolog.com',1,1),(4,'Matheus Martins','a1539a907fdf882ca96e0ea25194f50ed907594f2bea9f9d6d6e911f','metheus.martins@frigolog.com',1,1),(5,'Felipe Gonçalves','a5b19f990c8eb988684f7f7052741a646c7367b6e8cae56061b4a9ed','felipe.goncalves@frigolog.com',1,1),(6,'Luiz Phelipe','c7369446eedcb061748af4ae0bf45c7dda305bb6353f401b3f39fd29','luiz.phelipe@frigolog.com',1,1),(7,'Julio Brandao','34eefe0ca07e9edf00cfa1ef7eebf32089f139f0105b71721e30710e','julio.brandao@empresax.com',5,2);
+INSERT INTO `usuario` VALUES (1,'Bruno Rafael','9a5ae3c5b12ae30d7524bac12536f57139bccb8f78c9da62cf5f4e28','bruno.rafael@frigolog.com',1,1),(2,'Thays Ramos','16165a7b8ba39f67276ae219f6166a97f1d221a2031ab10b88641c29','thays.ramos@frigolog.com',1,1),(3,'Matheus Delfiol','a1539a907fdf882ca96e0ea25194f50ed907594f2bea9f9d6d6e911f','matheus.delfiol@frigolog.com',1,1),(4,'Matheus Martins','a1539a907fdf882ca96e0ea25194f50ed907594f2bea9f9d6d6e911f','metheus.martins@frigolog.com',1,1),(5,'Felipe Gonçalves','a5b19f990c8eb988684f7f7052741a646c7367b6e8cae56061b4a9ed','felipe.goncalves@frigolog.com',1,1),(6,'Luiz Phelipe','c7369446eedcb061748af4ae0bf45c7dda305bb6353f401b3f39fd29','luiz.phelipe@frigolog.com',1,1),(7,'Julio Brandao','34eefe0ca07e9edf00cfa1ef7eebf32089f139f0105b71721e30710e','julio.brandao@empresax.com',5,2),(8,'a','abd37534c7d9a2efb9465de931cd7055ffdb8879563ae98078d6d6d5','a@email.com',6,2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,6 +413,26 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `vw_ponto_operacional_mais_critico`
+--
+
+DROP TABLE IF EXISTS `vw_ponto_operacional_mais_critico`;
+/*!50001 DROP VIEW IF EXISTS `vw_ponto_operacional_mais_critico`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vw_ponto_operacional_mais_critico` AS SELECT 
+ 1 AS `id_empresa`,
+ 1 AS `id_ponto_operacional`,
+ 1 AS `ponto_operacional`,
+ 1 AS `nome_ambiente`,
+ 1 AS `temperatura`,
+ 1 AS `temp_min`,
+ 1 AS `temp_max`,
+ 1 AS `status_operacional`,
+ 1 AS `diferenca`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `vw_pontos_operacionais_criticos`
 --
 
@@ -461,14 +481,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `status_operacional`,
  1 AS `quantidade`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Dumping events for database 'frigolog'
---
-
---
--- Dumping routines for database 'frigolog'
---
 
 --
 -- Final view structure for view `vw_alertas`
@@ -543,6 +555,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vw_ponto_operacional_mais_critico`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_ponto_operacional_mais_critico`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`sptech`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_ponto_operacional_mais_critico` AS select `vw_status_ponto_operacional`.`id_empresa` AS `id_empresa`,`vw_status_ponto_operacional`.`id_ponto_operacional` AS `id_ponto_operacional`,`vw_status_ponto_operacional`.`ponto_operacional` AS `ponto_operacional`,`vw_status_ponto_operacional`.`nome_ambiente` AS `nome_ambiente`,`vw_status_ponto_operacional`.`temperatura` AS `temperatura`,`vw_status_ponto_operacional`.`temp_min` AS `temp_min`,`vw_status_ponto_operacional`.`temp_max` AS `temp_max`,`vw_status_ponto_operacional`.`status_operacional` AS `status_operacional`,(case when (`vw_status_ponto_operacional`.`temperatura` > `vw_status_ponto_operacional`.`temp_max`) then round((`vw_status_ponto_operacional`.`temperatura` - `vw_status_ponto_operacional`.`temp_max`),1) when (`vw_status_ponto_operacional`.`temperatura` < `vw_status_ponto_operacional`.`temp_min`) then round((`vw_status_ponto_operacional`.`temp_min` - `vw_status_ponto_operacional`.`temperatura`),1) else 0 end) AS `diferenca` from `vw_status_ponto_operacional` where `vw_status_ponto_operacional`.`id_leitura` in (select max(`l`.`id_leitura`) from (`leitura` `l` join `sensor` `s` on((`s`.`id_sensor` = `l`.`fk_sensor`))) group by `s`.`fk_po`) order by (case when (`vw_status_ponto_operacional`.`temperatura` > `vw_status_ponto_operacional`.`temp_max`) then round((`vw_status_ponto_operacional`.`temperatura` - `vw_status_ponto_operacional`.`temp_max`),1) when (`vw_status_ponto_operacional`.`temperatura` < `vw_status_ponto_operacional`.`temp_min`) then round((`vw_status_ponto_operacional`.`temp_min` - `vw_status_ponto_operacional`.`temperatura`),1) else 0 end) desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_pontos_operacionais_criticos`
 --
 
@@ -605,4 +635,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-02 10:51:31
+-- Dump completed on 2026-06-05 14:16:49

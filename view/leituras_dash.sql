@@ -225,3 +225,27 @@ WHERE id_leitura IN (
         ON s.id_sensor = l.fk_sensor
     GROUP BY s.fk_po
 );
+
+CREATE OR REPLACE VIEW vw_ponto_operacional_mais_critico AS
+SELECT
+    id_empresa,
+    id_ponto_operacional,
+    ponto_operacional,
+    nome_ambiente,
+    temperatura,
+    temp_min,
+    temp_max,
+    status_operacional,
+    CASE
+        WHEN temperatura > temp_max THEN ROUND(temperatura - temp_max, 1)
+        WHEN temperatura < temp_min THEN ROUND(temp_min - temperatura, 1)
+        ELSE 0
+    END AS diferenca
+FROM vw_status_ponto_operacional
+WHERE id_leitura IN (
+    SELECT MAX(l.id_leitura)
+    FROM leitura l
+    JOIN sensor s ON s.id_sensor = l.fk_sensor
+    GROUP BY s.fk_po
+)
+ORDER BY diferenca DESC;
