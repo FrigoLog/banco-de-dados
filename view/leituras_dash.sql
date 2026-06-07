@@ -1,3 +1,5 @@
+USE frigolog;
+
 -- Status de todas as leituras (histórico)
 CREATE OR REPLACE VIEW vw_status_ponto_operacional AS
 SELECT 
