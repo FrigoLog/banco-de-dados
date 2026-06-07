@@ -1,4 +1,4 @@
-CREATE VIEW vw_alertas AS
+CREATE OR REPLACE VIEW vw_alertas AS
 SELECT
 	e.id_empresa,
     e.razao_social,

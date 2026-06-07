@@ -135,7 +135,7 @@ ORDER BY
     dados.hora;
     
 -- Pontos operacionais criticos
-CREATE VIEW vw_pontos_operacionais_criticos AS
+CREATE OR REPLACE VIEW vw_pontos_operacionais_criticos AS
 SELECT
     e.id_empresa,
     COALESCE(
@@ -161,7 +161,7 @@ LEFT JOIN vw_status_ponto_operacional v
 GROUP BY e.id_empresa;
 
 -- Status dos pontos operacionais
-CREATE VIEW vw_status_pontos_operacionais AS
+CREATE OR REPLACE VIEW vw_status_pontos_operacionais AS
 SELECT
     id_empresa,
     status_operacional,
@@ -178,7 +178,7 @@ GROUP BY
     id_empresa,
     status_operacional;
     
-CREATE VIEW vw_alertas_24h AS
+CREATE OR REPLACE VIEW vw_alertas_24h AS
 SELECT
     e.id_empresa,
     po.id_ponto_operacional,
@@ -201,7 +201,7 @@ GROUP BY
     po.nome,
     ae.nome;
     
-CREATE VIEW vw_ponto_operacional_mais_critico AS
+CREATE OR REPLACE VIEW vw_ponto_operacional_mais_critico AS
 SELECT
     id_empresa,
     ponto_operacional,
