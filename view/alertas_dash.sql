@@ -3,12 +3,12 @@ SELECT
 	e.id_empresa,
     e.razao_social,
     ae.nome as ambiente,
+    po.id_ponto_operacional,
     po.nome as ponto_operacional,
     s.identificador,
     l.id_leitura,
     l.temperatura,
     l.data_hora,
-    
     CASE
 		WHEN l.temperatura < c.temp_min
 			AND (c.temp_min - l.temperatura) <= 3
