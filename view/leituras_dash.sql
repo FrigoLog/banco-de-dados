@@ -180,29 +180,6 @@ GROUP BY
     id_empresa,
     status_operacional;
     
-CREATE OR REPLACE VIEW vw_alertas_24h AS
-SELECT
-    e.id_empresa,
-    po.id_ponto_operacional,
-    po.nome AS ponto_operacional,
-    ae.nome AS ambiente,
-    COUNT(*) AS qtd_alertas
-FROM alerta a
-JOIN ponto_operacional po
-    ON po.id_ponto_operacional = a.fk_po
-JOIN ambiente_externo ae
-    ON ae.id_ambiente = po.fk_ambiente
-JOIN empresa e
-    ON e.id_empresa = ae.fk_empresa
-JOIN leitura l
-    ON l.id_leitura = a.fk_leitura
-WHERE l.data_hora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
-GROUP BY
-    e.id_empresa,
-    po.id_ponto_operacional,
-    po.nome,
-    ae.nome;
-    
 CREATE OR REPLACE VIEW vw_ponto_operacional_mais_critico AS
 SELECT
     id_empresa,
