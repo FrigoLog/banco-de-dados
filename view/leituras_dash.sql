@@ -97,7 +97,7 @@ GROUP BY
 CREATE OR REPLACE VIEW vw_dash_conformidade_do_sistema AS
 SELECT
     dados.id_empresa,
-    dados.hora,
+    dados.data_hora,
 
     ROUND(
         SUM(
@@ -114,14 +114,14 @@ FROM (
     SELECT
         v.id_empresa,
         v.id_ponto_operacional,
-        DATE_FORMAT(v.data_hora, '%Y-%m-%d %H:00') AS hora,
+        DATE_FORMAT(v.data_hora, '%Y-%m-%d %H:00') AS data_hora,
         v.status_operacional,
         v.id_leitura
     FROM vw_status_ponto_operacional v
     INNER JOIN (
         SELECT
             id_ponto_operacional,
-            DATE_FORMAT(data_hora, '%Y-%m-%d %H:00') AS hora,
+            DATE_FORMAT(data_hora, '%Y-%m-%d %H:00') AS data_hora,
             MAX(id_leitura) AS ultima_leitura
         FROM vw_status_ponto_operacional
         GROUP BY
@@ -132,9 +132,9 @@ FROM (
 ) dados
 GROUP BY
     dados.id_empresa,
-    dados.hora
+    dados.data_hora
 ORDER BY
-    dados.hora;
+    dados.data_hora;
     
 -- Pontos operacionais criticos
 CREATE OR REPLACE VIEW vw_pontos_operacionais_criticos AS
